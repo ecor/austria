@@ -1,0 +1,13 @@
+Package: austria
+Maintainer: Emanuele Cordano <emanuele.cordano@gmail.com>
+License: GPL (>= 2)
+Title: Snow/weather data
+Type: Package
+Author: Emanuele Cordano
+Description: Getting (currently historical) Austrian Weather data from available GeoSphere Climate SErvice APIs. 
+Version: 0.0.3
+Date: 2025-01-15
+Depends: sf,data.table,lubridate,terra,zoo
+Imports: httr,stringr,dplyr,rlang,geotopbricks
+URL: www.rendena100.eu
+RoxygenNote: 7.3.2
