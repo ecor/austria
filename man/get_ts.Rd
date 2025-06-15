@@ -119,6 +119,19 @@ end_timestamp <- "2022-01-01T00"
 ts <- get_ts(lat=lat,lon=lon,start_timestamp=start_timestamp,end_timestamp=end_timestamp)
 
 
+
+## Usage with SNOWGRID dataset 
+url_variables_snowgrid <- "https://dataset.api.hub.geosphere.at/v1/grid/historical/snowgrid_cl-v2-1d-1km/metadata/parameters"
+variables_snow <- get_variables(url_variables_snowgrid)
+
+
+url_snowgrid_template='https://dataset.api.hub.geosphere.at/v1/timeseries/historical/snowgrid_cl-v2-1d-1km?parameters=VARIABLES&start=START_TIMESTAMP\%3A00&end=END_TIMESTAMP\%3A00&lat_lon=LAT2N\%2CLON2E&lat_lon=LAT1S\%2CLON1W&output_format=csv'
+snow_ts <- get_ts(url=url_snowgrid_template,variable=variables_snow$name,
+lat=lat,lon=lon,start_timestamp=start_timestamp,end_timestamp=end_timestamp)
+## END Usage with SNOWGRID dataset 
+
+
+
 ## Alternative Usage: timestaps as POSIXct object
 start_timestamp=as.POSIXct("2022-01-01",tz="Etc/GMT-1")
 end_timestamp=start_timestamp+lubridate::years(1)
@@ -142,9 +155,6 @@ levels <- 10:20
 for (level in levels) {
   kw_ts[[level]] <- get_ts(wpath=wpath,level=level,use_geotop=TRUE,start_timestamp=start_timestamp,end_timestamp=end_timestamp,as_geotop=TRUE,write_geotop_meteo_file=TRUE)
 }
-
-
-
 
 }
 \seealso{

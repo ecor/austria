@@ -21,6 +21,13 @@ NULL
 #' 
 #' variables <- get_variables()
 #' 
+#' 
+#' url2 <- "https://dataset.api.hub.geosphere.at/v1/grid/historical/snowgrid_cl-v2-1d-1km/metadata/parameters"
+#' variables2 <- get_variables(url2)
+#' 
+#' 
+#' 
+#' 
 #  \url{https://dataset.api.hub.geosphere.at/v1/docs/}
   ## \url{https://dataset.api.hub.geosphere.at/v1/openapi-docs#/timeseries/Historical_Timeseries_timeseries_historical__resource_id__get}
      # 

@@ -32,8 +32,14 @@ get_inca_ts(
 \item{as_geotop}{logical. Mute argument , not used currently}
 }
 \value{
-a connection or a spatio-temporal raster object or a data table. 
+a connection or a spatio-temporal raster object or a data table.
+}
+\description{
+Gets inca time series from historical stations
+}
+\examples{
 
+# example code
 
 library(terra)
 library(sf)
@@ -62,10 +68,29 @@ outkw <- get_inca_ts(lon=xy[1,1],lat=xy[1,2],size=0.005,start_timestamp=start_ti
 wpath <- "/home/ecor/local/rpackages/rendena100/austria/inst/kw_meteo_template"
 outkw2 <- get_inca_ts(wpath=wpath,level=8,use_geotop=TRUE,start_timestamp=start_timestamp,end_timestamp=end_timestamp,return_data_table=TRUE,wide_table=TRUE)
 outkw2_ts <- get_ts(wpath=wpath,level=8,use_geotop=TRUE,start_timestamp=start_timestamp,end_timestamp=end_timestamp)
-}
-\description{
-Gets inca time series from historical stations
+
+
+## TO DO:https://data.hub.geosphere.at/dataset/snowgrid_cl-v2-1d-1km
+## Usage with SNOWGRID dataset 
+url_variables_snowgrid <- "https://dataset.api.hub.geosphere.at/v1/grid/historical/snowgrid_cl-v2-1d-1km/metadata/parameters"
+
+variables_snow <- get_variables(url_variables_snowgrid)
+
+start_timestamp=as.POSIXct("2023-01-01",tz="Etc/GMT-1")
+end_timestamp=start_timestamp+lubridate::days(2)
+
+###url_snowgrid_template='https://dataset.api.hub.geosphere.at/v1/grid/historical/snowgrid_cl-v2-1d-1km?parameters=VARIABLES&start=START_TIMESTAMP\%3A00&end=END_TIMESTAMP\%3A00&lat_lon=LAT2N\%2CLON2E&lat_lon=LAT1S\%2CLON1W&output_format=csv'
+url_snowgrid_template='https://dataset.api.hub.geosphere.at/v1/grid/historical/snowgrid_cl-v2-1d-1km?parameters=VARIABLES&start=START_TIMESTAMP\%3A00&end=END_TIMESTAMP\%3A00&bbox=LAT1S\%2CLON1W\%2CLAT2N\%2CLON2E&output_format=netcdf'
+out_snow <- get_inca_ts(url=url_snowgrid_template,variable=variables_snow$name,
+ext=v,start_timestamp=start_timestamp,end_timestamp=end_timestamp)
+## END Usage with SNOWGRID dataset 
+
+plot(out_snow)
+
+
+
+
 }
 \seealso{
-\url{https://dataset.api.hub.geosphere.at/v1/openapi-docs#/grid/Historical_Grid_Data_grid_historical__resource_id__get}
+\url{https://dataset.api.hub.geosphere.at/v1/openapi-docs#/grid/Historical_Grid_Data_grid_historical__resource_id__get},\url{https://data.hub.geosphere.at/dataset/snowgrid_cl-v2-1d-1km}
 }

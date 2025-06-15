@@ -20,6 +20,13 @@ Gets weather variable names / parameters from Geoshere APIs
 
 variables <- get_variables()
 
+
+url2 <- "https://dataset.api.hub.geosphere.at/v1/grid/historical/snowgrid_cl-v2-1d-1km/metadata/parameters"
+variables2 <- get_variables(url2)
+
+
+
+
 }
 \seealso{
 \url{https://dataset.api.hub.geosphere.at/v1/openapi-docs},\url{https://dataset.api.hub.geosphere.at/v1/docs/},
