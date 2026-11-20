@@ -260,4 +260,3 @@ get_ts <- function(url_template='https://dataset.api.hub.geosphere.at/v1/timeser
 }
 
 
-### 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
