@@ -1,6 +1,6 @@
 Package: austria
 Maintainer: Emanuele Cordano <emanuele.cordano@gmail.com>
-License: GPL (>= 2)
+License:  EUPL-1.2
 Title: Snow/weather data
 Type: Package
 Authors@R: c(person(given = "Emanuele",
